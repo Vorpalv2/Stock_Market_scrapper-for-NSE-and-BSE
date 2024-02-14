@@ -5,8 +5,8 @@ import { customCSS } from "./customCSSTag.rules.js";
 async function scrapScreener(companyName, format) {
   const browser = await puppeteer.launch();
   const nPage = await browser.newPage();
-  nPage.addStyleTag({ content: { customCSS } });
-  const connect = await nPage.goto(process.env.URL + companyName);
+  nPage.addStyleTag({ content: customCSS });
+  await nPage.goto(process.env.URL + companyName);
 
   if (format == "pdf") {
     await nPage.emulateMediaType("screen");
@@ -20,6 +20,7 @@ async function scrapScreener(companyName, format) {
   } else if (format == "png") {
     const data = await nPage.screenshot({
       path: `./images/${companyName}.${format}`,
+      captureBeyondViewport: true,
       fullPage: true,
       fromSurface: true,
     });
@@ -33,4 +34,4 @@ async function scrapScreener(companyName, format) {
     "Generated Data for :  " + passedValue + " in " + passedFormat + " format"
   );
   await scrapScreener(passedValue, passedFormat);
-})("IREDA", "png");
+})("IREDA", "pdf");
