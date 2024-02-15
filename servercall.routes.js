@@ -11,23 +11,23 @@ app.use(
   })
 );
 
-function setValue(parameter) {
-  return parameter;
-}
+// function setValue(parameter) {
+//   return parameter;
+// }
 
 app.listen(3000, () => {
   console.log("backend is running on PORT 3000");
 });
 
-app.post(`/postTest`, (req, res) => {
-  res.json({ TEST: "Getting this data throught /test route in backend" });
-});
+// app.post(`/postTest`, (req, res) => {
+//   res.json({ TEST: "Getting this data throught /test route in backend" });
+// });
 
-app.post(`/runFunction`, (req, res) => {
-  console.log("data in request");
-  console.log(req.body);
-  res.json({ check: "test" });
-});
+// app.post(`/runFunction`, (req, res) => {
+//   console.log("data in request");
+//   console.log(req.body);
+//   res.json({ check: "test" });
+// });
 
 app.post(`/form-submit`, async (req, res) => {
   if (!req.body) {
