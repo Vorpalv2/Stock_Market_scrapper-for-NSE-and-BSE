@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function CompanyForm() {
   const [companyName, setCompanyName] = useState("");
@@ -6,10 +6,14 @@ function CompanyForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log({ companyName, fileType });
-    let response = await fetch("http://localhost:3000/test");
-    let value = await response.json();
-    console.log(value);
+    console.log(JSON.stringify({ companyName, fileType }));
+    await fetch("http://localhost:3000/form-submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ companyName, fileType }),
+    });
   };
 
   return (

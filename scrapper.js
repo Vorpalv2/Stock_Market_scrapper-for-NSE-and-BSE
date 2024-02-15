@@ -29,9 +29,11 @@ async function scrapScreener(companyName, format) {
   }
 }
 
-(async (passedValue, passedFormat) => {
-  console.log(
-    "Generated Data for :  " + passedValue + " in " + passedFormat + " format"
-  );
-  await scrapScreener(passedValue, passedFormat);
-})("ITC", "pdf");
+// (async (passedValue, passedFormat) => {
+//   console.log(
+//     "Generated Data for :  " + passedValue + " in " + passedFormat + " format"
+//   );
+//   await scrapScreener(passedValue, passedFormat);
+// })("ITC", "pdf");
+
+export { scrapScreener };
