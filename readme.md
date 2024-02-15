@@ -23,3 +23,6 @@ The code imports the necessary modules (express, cors, and dotenv), defines a co
 The code runs a function called scrapScreener that takes two arguments (companyName and fileType) which is being imported from scrapper.js
 
 Some front end code as well which i wont be docmenting here so you can look at the code file and figure it out by yourself. Its a pretty simple logic.
+
+Backend Server is on localhost:3000
+FrontEnd Server is on localhost:5137 with is setup in cors to as origin point. PS. only the 5137 Port is setup in cors, other port wont work without changing them in cors oject.
