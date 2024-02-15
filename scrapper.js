@@ -34,4 +34,4 @@ async function scrapScreener(companyName, format) {
     "Generated Data for :  " + passedValue + " in " + passedFormat + " format"
   );
   await scrapScreener(passedValue, passedFormat);
-})("IREDA", "pdf");
+})("ITC", "pdf");
