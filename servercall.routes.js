@@ -1,3 +1,4 @@
+import "dotenv/config.js";
 import express from "express";
 import cors from "cors";
 import { scrapScreener } from "./scrapper.js";
@@ -11,23 +12,16 @@ app.use(
   })
 );
 
-// function setValue(parameter) {
-//   return parameter;
-// }
-
-app.listen(3000, () => {
-  console.log("backend is running on PORT 3000");
+// ------------- Server Setup ------------------------------- //
+app.listen(process.env.PORT || 3000, () => {
+  if (process.env.PORT === undefined) {
+    console.error("Port must be specified, rerouting to PORT 3000 by default");
+  } else {
+    console.log("backend is running on PORT ", process.env.PORT);
+  }
 });
 
-// app.post(`/postTest`, (req, res) => {
-//   res.json({ TEST: "Getting this data throught /test route in backend" });
-// });
-
-// app.post(`/runFunction`, (req, res) => {
-//   console.log("data in request");
-//   console.log(req.body);
-//   res.json({ check: "test" });
-// });
+// ------------- POST Requests --------------------------------//
 
 app.post(`/form-submit`, async (req, res) => {
   if (!req.body) {
@@ -41,3 +35,25 @@ app.post(`/form-submit`, async (req, res) => {
     res.send("Success");
   }
 });
+
+//--------------GET Requests -------------------------------- //
+
+/*
+---------Testing Routes-----------
+
+app.get(`/`, (req, res) => {
+  res.send("Welcome");
+});
+
+app.post(`/postTest`, (req, res) => {
+  res.json({ TEST: "Getting this data throught /test route in backend" });
+});
+
+app.post(`/runFunction`, (req, res) => {
+  console.log("data in request");
+  console.log(req.body);
+  res.json({ check: "test" });
+});
+
+---------Testing Routes-----------
+*/
