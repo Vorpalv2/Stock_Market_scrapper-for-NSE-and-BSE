@@ -1,36 +1,32 @@
 import fs from "fs";
-import fsasync from "fs/promises";
 import path from "path";
 
 let currentPath = path.join(process.cwd() + "/storage");
 console.log(currentPath);
 
-function checkDirectory() {
-  fs.readdir(currentPath, { recursive: true }, (error, files) => {
+function checkDirectory(directoryName, currentDirectory) {
+  fs.readdir(currentPath, { recursive: true }, (error) => {
     if (error) {
       console.log("Err : error reading directory : " + error);
-    } else if (files.length == 0) {
-      console.log("no files in: " + currentPath);
-      fs.mkdir(currentPath + "/images", { recursive: true }, (error, files) => {
-        if (error) {
-          console.log(error);
-        } else {
-          console.log("Directory created  at: " + currentPath);
-        }
-      });
-      fs.mkdir(currentPath + "/PDF", { recursive: true }, (error, files) => {
-        if (error) {
-          console.log(error);
-        } else {
-          console.log("Directory created  at: " + currentPath);
-        }
-      });
     } else {
-      for (let file of files) {
-        console.log(file);
-      }
+      console.log("no files in: " + currentPath);
+
+      fs.mkdir(
+        currentDirectory + "/" + directoryName,
+        { recursive: true },
+        (error) => {
+          if (error) {
+            console.log("Error Occured :" + error);
+          } else {
+            console.log(
+              `Directory by the name of ${directoryName} created at ${currentDirectory}`
+            );
+          }
+        }
+      );
     }
   });
 }
 
-checkDirectory();
+checkDirectory("images", currentPath);
+checkDirectory("PDF", currentPath);
