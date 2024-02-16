@@ -1,11 +1,21 @@
+import { useState } from "react";
+
 const Navbar = () => {
+  const [options, setOptions] = useState("");
+  console.log(options);
+
   return (
-    <nav className="flex sticky items-center justify-between bg-[#2E4659] text-white p-4">
+    <nav className="flex h-[8%] items-center justify-between bg-[#2E4659] text-white p-4">
       <div className="flex items-center">
-        <select className="bg-[#2E4659] border-2 border-white text-white rounded p-2">
-          <option>Option 1</option>
-          <option>Option 2</option>
-          <option>Option 3</option>
+        <select
+          className="bg-[#2E4659] border-2 border-white text-white rounded p-2"
+          onChange={(e) => {
+            console.log(e.target.value);
+            setOptions(e.target.value);
+          }}
+        >
+          <option value={options}>Light</option>
+          <option value={options}>Dark</option>
         </select>
       </div>
       <div>
