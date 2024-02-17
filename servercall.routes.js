@@ -2,6 +2,7 @@ import "dotenv/config.js";
 import express from "express";
 import cors from "cors";
 import { scrapScreener } from "./scrapper.js";
+import { checkDirectory } from "./directorychecker.function.js";
 
 const app = express();
 app.use(express.json());
@@ -30,6 +31,7 @@ app.post(`/form-submit`, async (req, res) => {
     const formData = req.body;
     const { companyName, fileType } = formData;
     console.log(companyName, fileType);
+    await checkDirectory();
     await scrapScreener(companyName, fileType);
     console.log("Scrap Screener Ran");
     res.send("Success");

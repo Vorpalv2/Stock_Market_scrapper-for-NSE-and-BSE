@@ -11,7 +11,7 @@ async function scrapScreener(companyName, format) {
   if (format == "pdf") {
     await nPage.emulateMediaType("screen");
     const data = await nPage.pdf({
-      path: `./PDF/${companyName}.${format}`,
+      path: `./storage/PDF/${companyName}.${format}`,
       format: "A4",
       landscape: true,
     });
@@ -19,7 +19,7 @@ async function scrapScreener(companyName, format) {
     return data;
   } else if (format == "png") {
     const data = await nPage.screenshot({
-      path: `./images/${companyName}.${format}`,
+      path: `./storage/images/${companyName}.${format}`,
       captureBeyondViewport: true,
       fullPage: true,
       fromSurface: true,

@@ -1,32 +1,35 @@
-import fs from "fs";
+import fsm, { stat, statfs } from "fs/promises";
 import path from "path";
 
-let currentPath = path.join(process.cwd() + "/storage");
-console.log(currentPath);
+let rootDir = process.cwd();
+let storagePath = path.join(rootDir + "/storage");
 
-function checkDirectory(directoryName, currentDirectory) {
-  fs.readdir(currentPath, { recursive: true }, (error) => {
-    if (error) {
-      console.log("Err : error reading directory : " + error);
-    } else {
-      console.log("no files in: " + currentPath);
-
-      fs.mkdir(
-        currentDirectory + "/" + directoryName,
-        { recursive: true },
-        (error) => {
-          if (error) {
-            console.log("Error Occured :" + error);
-          } else {
-            console.log(
-              `Directory by the name of ${directoryName} created at ${currentDirectory}`
-            );
-          }
-        }
-      );
-    }
-  });
+async function createDirectory(DirectoryName) {
+  try {
+    return await fsm.mkdir(DirectoryName, { recursive: true });
+  } catch (error) {
+    throw new Error("Error Creating Directory : ", error);
+  }
 }
 
-checkDirectory("images", currentPath);
-checkDirectory("PDF", currentPath);
+async function checkDirectory() {
+  try {
+    let createdDirectory = await createDirectory("storage", rootDir);
+    console.log(createdDirectory);
+    let openedDirectory = await fsm.opendir(createdDirectory, {
+      recursive: true,
+    });
+    console.log(openedDirectory);
+    await createDirectory(
+      path.join(openedDirectory.path, "images"),
+      storagePath
+    );
+    await createDirectory(path.join(openedDirectory.path, "PDF"), storagePath);
+  } catch (error) {
+    throw new Error(
+      "Error Checking Directory : " + error + " with code " + error.errno
+    );
+  }
+}
+
+export { checkDirectory };
