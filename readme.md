@@ -1,5 +1,7 @@
-two directories by the name of images and PDF are needed to store the files in respectively.
+--##--
+two directories by the name of images and PDF are needed to store the files in respectively. ==> In the process of replacing this with a custom function call which detects and automatically creates the directory based on if user has the directory already in or not.
 
+--##--
 Documentation for different files and how to run the software
 
 scrapper.js --> Documentation

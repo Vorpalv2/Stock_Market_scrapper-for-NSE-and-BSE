@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import { scrapScreener } from "./scrapper.js";
 import { checkDirectory } from "./directorychecker.function.js";
+import { APIError } from "./utils/APIError.handler.js";
 
 const app = express();
 app.use(express.json());
@@ -40,12 +41,18 @@ app.post(`/form-submit`, async (req, res) => {
 
 //--------------GET Requests -------------------------------- //
 
+app.get(`/`, (req, res) => {
+  try {
+    res.render("hello");
+  } catch (error) {
+    throw new APIError(error, 300);
+  }
+});
+
 /*
 ---------Testing Routes-----------
 
-app.get(`/`, (req, res) => {
-  res.send("Welcome");
-});
+
 
 app.post(`/postTest`, (req, res) => {
   res.json({ TEST: "Getting this data throught /test route in backend" });
