@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: "https://stock-market-scrapper-for-nse-and-bse.vercel.app/",
+    origin: "*",
     // origin: "http://localhost:5173",
   })
 );
