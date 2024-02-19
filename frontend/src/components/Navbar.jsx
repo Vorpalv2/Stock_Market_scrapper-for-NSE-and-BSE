@@ -2,7 +2,6 @@ import { useState } from "react";
 
 const Navbar = () => {
   const [options, setOptions] = useState("");
-  console.log(options);
 
   return (
     <nav className="flex h-[8%] items-center justify-between bg-[#2E4659] text-white p-4">
