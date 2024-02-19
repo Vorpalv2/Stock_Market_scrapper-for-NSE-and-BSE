@@ -1,16 +1,12 @@
+import os from "os";
+import path from "path";
 import fsm from "fs/promises";
 import fs from "fs";
-import path from "path";
 import { APIError } from "./utils/APIError.handler.js";
-import os from "os";
-
-let rootDir = process.cwd();
-let storagePath = path.join(rootDir + "/storage");
-let downloadPath = path.join(os.homedir(), "Downloads");
 
 let downloadsdir = path.join(os.homedir(), "Downloads");
 
-async function checkDirectory() {
+async function dirhandler() {
   if (!fs.existsSync(path.join(downloadsdir, "Storage"))) {
     await createDir(path.join(os.homedir(), "Downloads", "Storage"));
     console.log("Storage Directory Created");
@@ -33,9 +29,9 @@ async function createDir(dirPath) {
   }
 }
 
-async function saveToDownloads() {
-  let openedDownloadsDir = await fsm.opendir(downloadPath);
-  console.log(openedDownloadsDir);
-}
+dirhandler();
 
-export { checkDirectory };
+//   console.log(path.join(downloadsdir, "Storage"));
+
+// console.log(os.homedir() + "\\Downloads");
+// console.log(os.userInfo().username);

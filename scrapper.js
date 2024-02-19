@@ -1,6 +1,10 @@
 import "dotenv/config";
 import puppeteer from "puppeteer";
 import { customCSS } from "./customCSSTag.rules.js";
+import os from "os";
+import path from "path";
+
+let downloadsDir = path.join(os.homedir(), "Downloads");
 
 async function scrapScreener(companyName, format) {
   const browser = await puppeteer.launch();
@@ -11,7 +15,17 @@ async function scrapScreener(companyName, format) {
   if (format == "pdf") {
     await nPage.emulateMediaType("screen");
     const data = await nPage.pdf({
-      path: `./storage/PDF/${companyName}.${format}`,
+      path:
+        downloadsDir +
+        "/" +
+        "Storage" +
+        "/" +
+        "PDF" +
+        "/" +
+        companyName +
+        "." +
+        format,
+      // path: `./storage/PDF/${companyName}.${format}`,
       format: "A4",
       landscape: true,
     });
@@ -19,7 +33,16 @@ async function scrapScreener(companyName, format) {
     return data;
   } else if (format == "png") {
     const data = await nPage.screenshot({
-      path: `./storage/images/${companyName}.${format}`,
+      path:
+        downloadsDir +
+        "/" +
+        "Storage" +
+        "/" +
+        "images" +
+        "/" +
+        companyName +
+        "." +
+        format,
       captureBeyondViewport: true,
       fullPage: true,
       fromSurface: true,

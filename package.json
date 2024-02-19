@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon servercall.routes.js",
-    "check": "node directorychecker.function.js"
+    "check": "node check.test.js"
   },
   "keywords": [],
   "author": "",
