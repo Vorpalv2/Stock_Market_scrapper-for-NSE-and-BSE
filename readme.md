@@ -12,6 +12,10 @@ The if statement checks if the format argument is "pdf", in which case the funct
 
 The function returns the generated data, which can be used by the calling function.
 
+added a custom APIErrorHandler class inheriting from Error class to make the error handling more streamlined.
+
+directorychecker.function.js --> Implementation almost done. might have to flush out some bugs. Have not encountered any so far.
+
 servercall.routes.js --> Documentation
 
 Is a backend server written in JavaScript that uses the Express framework. It has several routes defined, including:
