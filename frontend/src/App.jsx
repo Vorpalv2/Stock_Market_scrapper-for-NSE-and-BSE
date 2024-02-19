@@ -1,3 +1,4 @@
+import Form from "./components/Form.jsx";
 import Hero from "./components/hero";
 import Navbar from "./components/Navbar.jsx";
 // import RegisterPage from "./components/RegisterPage.jsx";
