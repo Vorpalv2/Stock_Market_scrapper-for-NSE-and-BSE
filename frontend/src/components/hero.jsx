@@ -14,6 +14,9 @@ function CompanyForm() {
       },
       body: JSON.stringify({ companyName, fileType }),
     });
+    console.log(
+      `Data Fetched for ${companyName} in ${fileType} format, Open your Downloads and look inside Storage Folder`
+    );
   };
 
   return (
