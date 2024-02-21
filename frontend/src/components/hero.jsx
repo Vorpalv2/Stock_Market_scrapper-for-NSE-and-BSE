@@ -6,7 +6,6 @@ function CompanyForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(JSON.stringify({ companyName, fileType }));
     await fetch("http://localhost:3000/form-submit", {
       method: "POST",
       headers: {
