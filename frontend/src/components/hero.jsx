@@ -6,7 +6,7 @@ function CompanyForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await fetch("http://localhost:3000/form-submit", {
+    await fetch("https://stock-market-scrapper-for-nse-and-bse.vercel.app/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
