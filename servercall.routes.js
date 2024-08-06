@@ -44,7 +44,7 @@ app.post(`/form-submit`, async (req, res) => {
 
 app.get(`/`, (req, res) => {
   try {
-    res.render("hello");
+    res.json("hello");
   } catch (error) {
     throw new APIError(error, 300);
   }
