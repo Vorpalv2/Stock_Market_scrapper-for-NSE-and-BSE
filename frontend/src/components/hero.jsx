@@ -6,7 +6,7 @@ function CompanyForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await fetch(import.meta.env.VITE_FETCHURLform-submit, {
+    await fetch(import.meta.env.VITE_FETCHURL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
